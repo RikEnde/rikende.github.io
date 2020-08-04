@@ -1,7 +1,29 @@
 {%- assign social = site.social_links -%}
 
-{%- if social.github -%}<a rel="me" href="https://github.com/{{ social.github | cgi_escape | escape }}" title="{{ social.github | escape }}"><svg class="svg-icon grey"><use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use></svg></a>{%- endif -%}
-{%- if social.linkedin -%}<a rel="me" href="https://www.linkedin.com/in/{{ social.linkedin | cgi_escape | escape }}" title="{{ social.linkedin | escape }}"><svg class="svg-icon grey"><use xlink:href="{{ '/assets/minima-social-icons.svg#linkedin' | relative_url }}"></use></svg></a>{%- endif -%}
-{%- if social.twitter -%}<a rel="me" href="https://twitter.com/{{ social.twitter | cgi_escape | escape }}" title="{{ social.twitter | escape }}"><svg class="svg-icon grey"><use xlink:href="{{ '/assets/minima-social-icons.svg#twitter' | relative_url }}"></use></svg></a>{%- endif -%}
-<a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a>
-<a class="u-email" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+{%- if social.github -%}
+<a rel="me" href="https://github.com/{{ social.github | cgi_escape | escape }}" title="{{ social.github | escape }}">
+    <svg class="svg-icon grey">
+        <use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use>
+    </svg>
+</a>
+{%- endif -%}
+
+{%- if social.linkedin -%}
+<a rel="me" href="https://www.linkedin.com/in/{{ social.linkedin | cgi_escape | escape }}" title="{{ social.linkedin | escape }}">
+    <svg class="svg-icon grey">
+        <use xlink:href="{{ '/assets/minima-social-icons.svg#linkedin' | relative_url }}"></use>
+    </svg>
+</a>
+{%- endif -%}
+
+{%- if social.twitter -%}
+<a rel="me" href="https://twitter.com/{{ social.twitter | cgi_escape | escape }}" title="{{ social.twitter | escape }}">
+    <svg class="svg-icon grey">
+        <use xlink:href="{{ '/assets/minima-social-icons.svg#twitter' | relative_url }}"></use>
+    </svg>
+</a>
+{%- endif -%}
+
+{%- if site.author.email -%}
+    <a class="u-email" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+{%- endif -%}
