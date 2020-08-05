@@ -35,6 +35,15 @@ avatar: https://avatars0.githubusercontent.com/u/6178351?s=400
 # Build settings
 theme: minima
 
+permalink:            pretty
+
+markdown:             kramdown
+kramdown:
+  input:              GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+
 exclude:
  - Gemfile
  - Gemfile.lock
