@@ -22,9 +22,9 @@ users to add custom functionality that is extremely specific for their own proje
 
 Each plugin gets its own classloader, which delegates to the Jenkins core classloader. For the context of this blog, 
 it isn't necessary to know exactly what this means, other than the following consequences:
-- Your plugin runs in the same JVM as the Jenkins code. If you crash your JVM, Jenkins crashes along with your code.
+- Your plugin runs in the JVM of the Jenkins master. If you crash your JVM, Jenkins crashes along with your code.
 - Unloading classes from a classloader is not supported. This means a new plugin can be used right away, but deleting 
-or updating an existing plugin requires Jenkins to be restarted.
+or updating an existing plugin requires the Jenkins master to be restarted.
 - Your plugin will be loaded system wide. If you change existing behavior for your own builds, everyone else's 
 builds may be affected as well.
 

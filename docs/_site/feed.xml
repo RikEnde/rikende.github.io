@@ -1,4 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-08-05T15:47:58-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Rik van den Ende</title><subtitle>A blog with some tech posts and maybe some pictures</subtitle><author><name>Rik van den Ende</name><email>rik.ende@gmail.com</email></author><entry><title type="html">Writing and maintaining Jenkins Plugins</title><link href="http://localhost:4000/jenkins/2020/08/05/jenkins-plugins/" rel="alternate" type="text/html" title="Writing and maintaining Jenkins Plugins" /><published>2020-08-05T11:00:00-04:00</published><updated>2020-08-05T11:00:00-04:00</updated><id>http://localhost:4000/jenkins/2020/08/05/jenkins-plugins</id><content type="html" xml:base="http://localhost:4000/jenkins/2020/08/05/jenkins-plugins/">&lt;p&gt;There are enough quick howto and tutorial pages on Jenkins plugins on the internet, which explain the minimum steps 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-01-26T13:40:58-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Rik van den Ende</title><subtitle>A blog with some tech posts and maybe some pictures</subtitle><author><name>Rik van den Ende</name><email>rik.ende@gmail.com</email></author><entry><title type="html">Install macOS Mojave VM with Parallels Desktop</title><link href="http://localhost:4000/jenkins/2021/01/26/installing-mojave-parallels/" rel="alternate" type="text/html" title="Install macOS Mojave VM with Parallels Desktop" /><published>2021-01-26T12:00:00-05:00</published><updated>2021-01-26T12:00:00-05:00</updated><id>http://localhost:4000/jenkins/2021/01/26/installing-mojave-parallels</id><content type="html" xml:base="http://localhost:4000/jenkins/2021/01/26/installing-mojave-parallels/">&lt;p&gt;Apple removed 32-bit support with the release of Catalina. This means you can’t 
+play old 32 bit games from your steam library any more. Here we will attempt to 
+rectify this by running Mojave, the last macOS release with 32-bit support, in a VM.&lt;/p&gt;
+
+&lt;p&gt;In this post, we will walk through the steps to install macOS Mojave in a VM, using 
+&lt;a href=&quot;https://www.parallels.com/products/desktop/&quot;&gt;parallels desktop for mac&lt;/a&gt;. Before we start, 
+as of January 2021, this will not work on macs with the new Apple M1 hardware. According to their 
+&lt;a href=&quot;https://www.parallels.com/blogs/parallels-desktop-apple-silicon-mac/&quot;&gt;blog&lt;/a&gt; 
+Parallels is working on making this work.&lt;/p&gt;
+
+&lt;p&gt;With your favorite search engine, you will find &lt;a href=&quot;https://kb.parallels.com/124095&quot;&gt;several&lt;/a&gt; 
+older &lt;a href=&quot;https://kb.parallels.com/124786&quot;&gt;blog posts&lt;/a&gt; about solving this problem, but they 
+all depend on being able to &lt;a href=&quot;https://support.apple.com/en-ca/HT211683&quot;&gt;download Mojave from the app store&lt;/a&gt;, 
+where it is now no longer available.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2021-01-26/Mojave_not_found.png&quot; alt=&quot;Mojave in app store&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The images are still available from the Apple website, they’re just not advertising it. 
+There is a handy tool available on github called &lt;a href=&quot;https://github.com/corpnewt/gibMacOS&quot;&gt;gibMacOs&lt;/a&gt;, 
+which will help you pull the images you want from the Apple software update site, and turn them into 
+installable packages.&lt;/p&gt;
+
+&lt;p&gt;Clone the project and run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gibMacOS.command&lt;/code&gt;. You should see a menu with a bit over a dozen 
+macOS images available and supported by gibMacOs. Choose &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macOS Mojave 10.14.6&lt;/code&gt; and it will start 
+downloading the roughly 6.5 Gb image and supporting files. The files will be saved in a 
+directory called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macOS\ Downloads/publicrelease/[name of the image]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When it is done downloading, run the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BuildMacOSinstallapp.command&lt;/code&gt;. It will ask for the full path of 
+the downloaded folder, with spaces escaped, something like 
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/Users/rik/projects/gibMacOS/macOS\ Downloads/publicrelease/061-26589\ -\ 10.14.6\ macOS\ Mojave&lt;/code&gt; . 
+You can type it in yourself, or drag &amp;amp; drop the folder into the terminal window to achieve the same. 
+This will create the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Install macOS Mojave.app&lt;/code&gt; folder that we can install in a virtual machine.&lt;/p&gt;
+
+&lt;p&gt;To orchestrate the VMs we will use &lt;a href=&quot;https://www.parallels.com&quot;&gt;Parallels Desktop for Mac&lt;/a&gt;. I don’t know 
+if this is the best choice performance-wise, but it allows incredibly smooth integration between the 
+host desktop and the guest desktop, especially in the case of a Windows guest on a macOS host. You can 
+copy &amp;amp; paste or drag &amp;amp; drop between host and guest, there is support for hardware acceleration in the 
+guest desktop, etc. You can hide the guest desktop altogether, and make applications running on the 
+guest OS appear on the host desktop and so on. It’s not free, but if you’re using this 
+tutorial, you have an expensive laptop, so that shouldn’t be a concern. Try the Free Trial first, because 
+what you are trying to achieve with this Mojave VM might not work.&lt;/p&gt;
+
+&lt;p&gt;Start parallels desktop and select create new, and select the option &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Install Windows or other OS from 
+a DVD or image file&lt;/code&gt;. If the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Find Automatically&lt;/code&gt; mode doesn’t find the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Install macOS Mojave.app&lt;/code&gt; folder 
+we created earlier, click &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Choose Manually&lt;/code&gt;. You can either drag &amp;amp; drop the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Install macOS Mojave.app&lt;/code&gt; 
+folder there, or click &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Select a file&lt;/code&gt; and then browse. In that case, select &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;All files (*)&lt;/code&gt; in the 
+installation file types dropdown and select &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Install macOS Mojave&lt;/code&gt;. Click continue to begin the 
+installation. Select a name for the VM and click create. You should see the macOS boot sequence starting. 
+After selecting a language, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;macOS Utilities&lt;/code&gt; window should pop up. Select &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Install macOS&lt;/code&gt;, continue. 
+Agree to the licence terms, and start the installation. Choose the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Macintosh HD&lt;/code&gt; drive. This whole process 
+is estimated to take about 2 minutes, which will take about 15 minutes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2021-01-26/Mojave_installing.png&quot; alt=&quot;Mojave installing&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After the installation process, you can sign in with your apple ID. You’ll get a warning that your apple ID
+is being used to sign into a new device. Enter the PIN code, accept the terms and conditions, and we have macOS 
+Mojave running inside a macOS Catalina host:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2021-01-26/Mojave_installation_done.png&quot; alt=&quot;Mojave installing&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So now we should be able to run 32 bit applications again.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2021-01-26/Mojave_running_32_bit_app_fail.png&quot; alt=&quot;Mojave running&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, the 32 bit applications will now install, but there is a problem: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Error! Failed to create GL context: 
+Failed creating OpenGL pixel format&lt;/code&gt;. The Parallels knowledge base provides the answer: &lt;a href=&quot;https://kb.parallels.com/124095&quot;&gt;Parallels Desktop does 
+not support 2D or 3D acceleration in OS X/macOS guest operating systems&lt;/a&gt; 
+(installed inside the virtual machine) because Apple does not provide an API for creating a video driver with 
+2D/3D acceleration support.&lt;/p&gt;
+
+&lt;p&gt;In order to run the older steam games, we will have to use bootcamp, or run Windows 10 in a parallels VM.&lt;/p&gt;</content><author><name>Rik van den Ende</name><email>rik.ende@gmail.com</email></author><summary type="html">Apple removed 32-bit support with the release of Catalina. This means you can’t play old 32 bit games from your steam library any more. Here we will attempt to rectify this by running Mojave, the last macOS release with 32-bit support, in a VM.</summary></entry><entry><title type="html">Writing and maintaining Jenkins Plugins</title><link href="http://localhost:4000/jenkins/2020/08/05/jenkins-plugins/" rel="alternate" type="text/html" title="Writing and maintaining Jenkins Plugins" /><published>2020-08-05T11:00:00-04:00</published><updated>2020-08-05T11:00:00-04:00</updated><id>http://localhost:4000/jenkins/2020/08/05/jenkins-plugins</id><content type="html" xml:base="http://localhost:4000/jenkins/2020/08/05/jenkins-plugins/">&lt;p&gt;There are enough quick howto and tutorial pages on Jenkins plugins on the internet, which explain the minimum steps 
 needed to start a plugin project. There is also the extremely long official wiki, with pages varying from extremely 
 detailed and informative, to last updated 2011.&lt;/p&gt;
 
@@ -16,9 +86,9 @@ users to add custom functionality that is extremely specific for their own proje
 &lt;p&gt;Each plugin gets its own classloader, which delegates to the Jenkins core classloader. For the context of this blog, 
 it isn’t necessary to know exactly what this means, other than the following consequences:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Your plugin runs in the same JVM as the Jenkins code. If you crash your JVM, Jenkins crashes along with your code.&lt;/li&gt;
+  &lt;li&gt;Your plugin runs in the JVM of the Jenkins master. If you crash your JVM, Jenkins crashes along with your code.&lt;/li&gt;
   &lt;li&gt;Unloading classes from a classloader is not supported. This means a new plugin can be used right away, but deleting 
-or updating an existing plugin requires Jenkins to be restarted.&lt;/li&gt;
+or updating an existing plugin requires the Jenkins master to be restarted.&lt;/li&gt;
   &lt;li&gt;Your plugin will be loaded system wide. If you change existing behavior for your own builds, everyone else’s 
 builds may be affected as well.&lt;/li&gt;
 &lt;/ul&gt;
