@@ -2,7 +2,7 @@
 layout: post
 title:  "Jenkins Shared Libraries"
 date:   2020-08-04 08:00:00 -0400
-categories: jenkins
+tags: [jenkins]
 ---
 
 When you maintain a number of projects, each with their own Jenkinsfile, you will find you are copying the same 

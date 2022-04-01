@@ -2,7 +2,7 @@
 layout: post
 title:  "Hello world!"
 date:   2020-08-03 15:49:13 -0400
-categories: personal
+tags: [personal]
 ---
 
 ![Acorn Electron](/images/2020-08-03/acorn_electron.jpg)

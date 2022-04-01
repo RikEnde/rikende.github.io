@@ -5,4 +5,4 @@
 .jekyll-cache/
 .jekyll-metadata
 
-.idea/
+.idea/!/docs/

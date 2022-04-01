@@ -2,7 +2,7 @@
 layout: post
 title:  "Install macOS Mojave VM with Parallels Desktop"
 date:   2021-01-26 12:00:00 -0500
-categories: jenkins
+tags: [macos]
 ---
 
 Apple removed 32-bit support with the release of Catalina. This means you can't 

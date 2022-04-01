@@ -2,7 +2,7 @@
 layout: post
 title:  "Writing and maintaining Jenkins Plugins"
 date:   2020-08-05 11:00:00 -0400
-categories: jenkins
+tags: [jenkins]
 ---
 
 There are enough quick howto and tutorial pages on Jenkins plugins on the internet, which explain the minimum steps 
