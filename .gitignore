@@ -6,3 +6,4 @@
 .jekyll-metadata
 
 .idea/!/docs/
+.DS_Store
