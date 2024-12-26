@@ -10,9 +10,10 @@ This summer, while helping my parents clean up the attic, I found this thing amo
 ![BBC Master](/images/2024-12-01/bbc_master.jpg)
 
 To explain what it is and how I got it, I'll need to give some background information, that turned 
-into my super villain origin story. 
+into my computer geek origin story. 
 
-## My super villain origin story
+
+## My computer geek origin story
 
 When I was about 11 or 12, it wasn't common for homes in the Netherlands to have a computer. 
 My parents weren't well off, and wouldn't have bought such an appliance if they could do 
@@ -51,14 +52,16 @@ other than the initial German versions of Meteors (Asteroids), Starship Command 
 plus an English version of Elite I later ordered from the UK through the mail, it wasn't really 
 feasible to buy games or other software for it. 
 
-The electron was a very basic little machine, with a 1MHz 8 bit 6502A CPU, with the same instruction 
-set as the Commodore's 6510. The built-in BBC basic was quite advanced for its time, especially 
-considering the fact that it was all implemented in 32 kilobytes of ROM along with the operating 
-system. It supported procedures and functions, assignable expressions, pointer arithmetic and even 
-an inline assembler. 
+The electron was a stripped down version of the BBC Micro, a computer that Acorn released in cooperation
+with the British Broadcasting Corporation for the educational market in the UK. It was a very basic little 
+machine, with a 1MHz 8 bit 6502A CPU, with the same instruction set as the Commodore's 6510, and 32 kilobytes 
+of RAM. The built-in BBC basic was quite advanced for its time, especially considering the fact that it was 
+all implemented in just 16kb of ROM along with the operating system. It supported procedures and functions, 
+pointer arithmetic and even an inline assembler.
 
 I'm trying to recall this from my early teenage memory, so there might be some mistakes in these 
 examples. 
+
 
 ### Variables
 
@@ -71,14 +74,15 @@ a$ = "Hello World"
 PRINT a$
 Hello World
 ```
-For arrays you had to allocate memory with the DIM instruction. `DIM a$ (10)` would allocate space for an
+
+For arrays you had to allocate memory with the DIM instruction. `DIM a$(10)` would allocate space for an
 array of 10 strings and assign the start address of the array in memory to the variable `a`. You could
-allocate multidimensional arrays: `DIM a$ (2,2,2)`. Strings had a maximum length of 255 characters and
+allocate multidimensional arrays: `DIM a$(2,2,2)`. Strings had a maximum length of 255 characters and
 were terminated with the ascii code for carriage return `&0D`. Indexing of an array was done with braces
 and started with index 0
 
 ```
-DIM a (2,2)
+DIM a(2,2)
 a(0,0) = 1
 a(1,2) = 4
 ```
@@ -113,11 +117,12 @@ hexadecimal value), so that's where your program is stored in memory, unless you
 space below &0E00 was RAM used by the operating system, but you could use much of it if you knew what 
 you were doing. 
 
+
 ### Line numbers
 
 Your BASIC programs weren't stored in memory as a text file. BASIC instructions were stored as a one 
 byte token. Line numbers were stored as a 2 byte integer and a pointer to the next line in memory. There 
-here was a renumber command to automatically replace the line numbers with a new sequence: 
+was a renumber command to automatically replace the line numbers with a new sequence: 
 `RENUMBER start, increment`. This would also update the line numbers that GOTO statements pointed to 
 so it didn't break your program. Anecdotally, they had exactly 7 characters of space left for the error 
 message if you chose a sequence that didn't make sense. I don't know if this was the real reason they 
@@ -125,7 +130,7 @@ chose this error message, but I want it to be true:
 
 ``` 
 RENUMBER 10,0
-    Silly.
+Silly.
 ```
 
 You could of course manually poke the right byte values in the right memory locations to change the 
@@ -175,14 +180,16 @@ With constructions like `PROC` (procedure) and `FN` (function) you didn't need `
 Basic would have worked just fine without line numbers. 
 
 ```
-10 PROC_hey
-20 PRINT FN_double(10)
-30 END
-40 DEF PROC_hey
-50 PRINT "Hey"
-60 END
-70 DEF FN_double(A%)
-80 = A% * 2
+ 10 PROC_hey
+ 20 PRINT FN_double(10)
+ 30 END
+ 40 
+ 50 DEF PROC_hey
+ 60 PRINT "Hey"
+ 70 ENDPROC
+ 80
+ 90 DEF FN_double(A%)
+100 = A% * 2
 RUN
 Hey
 20
@@ -203,9 +210,12 @@ INPUT a
 ON a PROC_foo, PROC_bar, PROC_baa ELSE PRINT "Huh?"
 ```
 
-Both the design and implementation of BBC Basic were an early example of the genius of Sophie Wilson, who 
-was in her early 20s at the time. Given that this was my experience with BASIC, I never quite saw 
-why it got so little respect. 
+Both the design and implementation of BBC Basic were an early example of the genius of Sophie Wilson[^wilson], who 
+was in her early 20s at the time. She also designed the original ARM instruction set around that time, so you 
+probably own a number of devices containing her work. 
+
+Given that this was my experience with BASIC, I never quite saw why it got so little respect. 
+
 
 ### Memory 
 
@@ -239,10 +249,9 @@ PRINT ?BUF%
     65
 
 REM Change the byte at offset +2 to the ASCII value of 'A'
-REM This could also be written as ?(BUF% + 2) = 65
 BUF%?2 = 65
 PRINT $BUF%
-    ABADE
+ABADE
 
 REM Address the variable as a 4 byte word and then read as bytes
 !BUF% = &FFEE
@@ -259,41 +268,88 @@ reserve a block of 12 bytes for the string "Hello World", and a block of 100 byt
 program. The assembly block is the code between the square brackets. We set the program counter 
 to the allocated start address, and the X register to 0.
 
-The first opcode is load accumulator (`LDA`) with the content of address `buf%` with the offset in 
-register X. If this is equal to `&0D` we jump to `done` with `BEQ` (branch if equal), otherwise 
-we jump to subroutine at address `&FFEE`. The `JSR` instruction pushes the current program counter 
-onto the stack, which the `RTS` instruction will pop to return to, as opposed to an unconditional 
-jump `JMP`. After returning from the subroutine, we increment the register X, and as long as this 
-doesn't overflow to 0, jump back to the start of the loop and repeat, now with the increased 
-offset. At the label `done`, the return from subroutine `RTS` opcode pops the program counter 
-off the stack and returns to the BASIC interpreter at the point where the assembled machine code 
-was called. 
+The `FOR` loop is to do two assembler passes. The assembler can't look forward, so at line 110, the
+label `done` is not yet defined. With `OPT 0` the assembler ignores errors, but does set the labels,
+and with `OPT 3` errors are reported and a listing is generated.
+
+There is probably a more efficient way to do this, but I haven't done this since I was a teenager,
+and simply don't reliably remember how it worked.
 
 ```
  10 DIM buf% 12     
  20 DIM code 100
  30 $buf% = "Hello World"
- 40 P% = code; X% = 0
- 50 [
- 60 .loop
- 70 LDA buf%, X
- 80 CMP #&0D
- 90 BEQ done
-100 JSR &FFEE
-110 INX 
-120 BNE loop
-130 .done
-140 RTS
-150 ]
-160 CALL code
+ 40 PRINT "buf% variable allocated at "; ~buf%
+ 50 FOR I% = 0 TO 3 STEP 3
+ 60 P% = code
+ 70 [OPT I%
+ 80 LDX #0
+ 90 .loop
+100 LDA buf%, X
+110 CMP #&0D
+120 BEQ done
+130 JSR &FFEE
+140 INX 
+150 BNE loop
+160 .done
+170 RTS
+180 ]
+190 NEXT
+200 CALL code
+
+>RUN
+buf% allocated at FA0
+0F31
+0F31              OPT I%
+0F31   A2 00      LDX #0
+0F33              .loop
+0F33   BD A0 0F   LDA buf%, X
+0F36   C9 0D      CMP #&0D
+0F38   F0 06      BEQ done
+0F3A   20 EE FF   JSR &FFEE
+0F3D   E8         INX
+0F3E   D0 F3      BNE loop
+0F40              .done
+0F40   60         RTS
+
+Hello World>
 ```
 
-There is probably a more efficient way to do this, but I haven't done this since I was a teenager, 
-and simply don't reliably remember how it worked. 
+## Opcodes and OSWRCH
 
-The subroutine at `&FFEE` is the operating system subroutine `OSWRCH` (OS write character) that 
-takes the ascii code stored in the accumulator register and writes it to the next position on 
-the screen.
+The listing shows the generated opcodes for the assembly instructions. `OPT` is not an instruction but an 
+assembler 'macro' for want of a better term, so there is no opcode. 
+
+At address `0F31` we see `A2` is the opcode for `LDX #value`, and `00` is the value in question, in other words 
+set X to 0. 
+
+Next at `0F33` is the opcode `BD` for `LDA` with absolute X-indexed addressing mode, followed by the address `0FA0` of `buf%` 
+stored in little-endian format: `A0`, `0F`. 
+
+The next instruction `CMP #value` becomes `C9`, followed by `0D` as the value. This will essentially act like a 
+subtraction took place, but only set the Negative, Zero and Carry flags, not store the result. 
+
+The next instruction `BEQ`, opcode `F0`, does a conditional jump if the zero flag was set by the preceding `CMP` 
+if A was equal to 13. The next bye, `06` is the relative address to jump to if the condition is met, in this case 
+6 bytes forward. 
+
+The `JSR` opcode is `20`. This instruction, jump to subroutine, stores the current program counter on the stack before 
+jumping to the absolute address `FFEE`, stored in little-endian format. This is the address of the operating system 
+routine called `OSWRCH`, short for OS Write Character, which takes the ASCII code stored in the Accumulator register 
+and writes that to the currently selected output devices, by default the screen. 
+
+`INX` with opcode `E8` increments the X register for the next pass of the loop to grab the next byte of `buf%`. 
+If this does not overflow to 0, we do the conditional jump `BNE`, opcode `D0` to the relative address `F3`, which is 
+-13, so 13 bytes back to `0F33`. From this follows logically that the branch instructions can only jump 127 bytes 
+forward or 128 bytes backwards, no further. 
+
+The final instruction `RTS` (return from subroutine) with opcode `60` pulls the top 2 bytes off the stack, LSB then 
+MSB, and uses those as an absolute address to jump to. The whole program takes up 15 bytes, plus the 13 bytes for 
+the `Hello World` string plus the terminating `\r`.
+
+This was a long story to get to `OSWRCH`, but what does this have to do with the BBC Master in my 
+parents' attic? 
+
 
 ## Job as an assistant system administrator 
 
@@ -314,3 +370,5 @@ but he had been storing them, officially just in case they needed to use the old
 but really because he felt a kind of attachment to them. 
 
 So that's how a BBC Master ended up stored in my parents' attic. 
+
+[^wilson]: [Basic and ARM: engineering expertise inside the BBC Micro](https://youtu.be/swHpgffXOBE)

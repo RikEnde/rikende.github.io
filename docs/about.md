@@ -8,8 +8,8 @@ permalink: /about/
 
 I'm a software engineer from Amsterdam, living in North Carolina
 
-I have been working as a Java developer for the past decade and a half, but will happily solve problems using python,
-C, swift, go, bash or any other tool if the problem calls for it.
+I have been working as a Java developer for the past two decades, but will happily solve problems using python,
+C, swift, kotlin, bash or any other tool if the problem calls for it.
 
 My specialties are the Spring Framework, CQRS / Axon Framework and Jenkins.
 
