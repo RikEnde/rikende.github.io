@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How I got a BBC Master - Retro Computing Series"
+title:  "How I got a BBC Master"
 date:   2024-12-01 12:00:00 -0500
 tags: [acorn,master,bbc]
 ---
