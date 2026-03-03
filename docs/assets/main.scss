@@ -1,0 +1,270 @@
+---
+---
+
+// Acorn Electron-inspired palette
+// Case: warm beige/cream, dark charcoal strip, green branding
+$electron-cream:       #d8cfb8;
+$electron-dark:        #2a2a24;
+$electron-green:       #4a8c3f;
+$electron-key:         #ddd8c4;
+
+$brand-color:          $electron-green;
+$brand-color-light:    lighten($brand-color, 20%);
+$brand-color-dark:     darken($brand-color, 15%);
+
+$text-color:           $electron-dark;
+$background-color:     #ebe6d8;
+
+$grey-color:           #6b6550;
+$grey-color-light:     #cdc6b0;
+$grey-color-dark:      #3a3830;
+
+$base-font-family:     "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+$base-font-size:       17px;
+$base-line-height:     1.7;
+
+$content-width:        820px;
+
+@import "minima";
+
+// ── Headings ──
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-weight: 600;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid $grey-color-light;
+}
+
+h3, h4 {
+  font-weight: 600;
+}
+
+// ── Code ──
+
+code {
+  font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  font-size: 0.88em;
+}
+
+// Inline code
+:not(pre) > code {
+  background-color: #d4ceba;
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  border: none;
+}
+
+// Code blocks
+.highlighter-rouge .highlight,
+.highlight {
+  background: #d4ceba;
+  border: 1px solid #b8b29e;
+  border-radius: 6px;
+  padding: 14px 18px;
+  overflow-x: auto;
+
+  pre,
+  code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  // Rouge marks some valid tokens (e.g. GraphQL fields/braces) as errors
+  .err {
+    color: inherit;
+    background: none;
+  }
+}
+
+// Standalone pre (not inside .highlight)
+pre:not(.highlight) {
+  background: #d4ceba;
+  border: 1px solid #b8b29e;
+  border-radius: 6px;
+  padding: 14px 18px;
+  overflow-x: auto;
+}
+
+// ── Content area ──
+
+.page-content {
+  background-color: #f0ebe0;
+}
+
+.post-content,
+.home {
+  max-width: $content-width;
+}
+
+// ── Header ──
+
+.site-header {
+  border-top: none;
+  border-bottom: 2px solid #1a1a16;
+  background-color: $electron-dark;
+  padding: 28px 0;
+  min-height: 80px;
+
+  // Subtle speaker grille texture (like the Electron's top strip)
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.03) 3px,
+      rgba(255, 255, 255, 0.03) 4px
+    );
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .site-nav {
+    margin-left: auto;
+  }
+}
+
+.site-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  &, &:visited {
+    color: $electron-green;
+  }
+
+  &:hover {
+    color: lighten($electron-green, 15%);
+    text-decoration: none;
+  }
+}
+
+.site-nav {
+  .page-link {
+    color: $electron-cream;
+    font-weight: 500;
+
+    &:hover {
+      color: $electron-green;
+      text-decoration: none;
+    }
+  }
+
+  // Mobile hamburger menu icon
+  .menu-icon > svg {
+    fill: $electron-cream;
+  }
+}
+
+// ── Footer ──
+
+.site-footer {
+  background-color: $electron-dark;
+  border-top: 2px solid #1a1a16;
+  color: #a09880;
+
+  a {
+    color: $electron-green;
+
+    &:hover {
+      color: lighten($electron-green, 15%);
+    }
+  }
+}
+
+.footer-heading {
+  color: $electron-cream;
+}
+
+.social-media-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .svg-icon {
+    fill: $electron-green;
+  }
+}
+
+// ── Post meta ──
+
+.post-meta {
+  color: $grey-color;
+  font-size: 0.9em;
+}
+
+// ── Blockquotes ──
+
+blockquote {
+  border-left: 4px solid $electron-green;
+  color: $grey-color;
+  font-style: italic;
+}
+
+// ── Images ──
+
+.post-content img {
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+// ── Tables ──
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: $spacing-unit;
+
+  th {
+    background-color: #d4ceba;
+    font-weight: 600;
+  }
+
+  th, td {
+    padding: 8px 12px;
+    border: 1px solid $grey-color-light;
+  }
+}
+
+// ── Links ──
+
+a {
+  color: $brand-color;
+  text-decoration: none;
+
+  &:visited {
+    color: $brand-color-dark;
+  }
+
+  &:hover {
+    color: darken($brand-color, 10%);
+    text-decoration: underline;
+  }
+}
+
+// ── Post list ──
+
+.post-list h3 a {
+  color: $text-color;
+  font-weight: 600;
+
+  &:hover {
+    color: $brand-color;
+  }
+}

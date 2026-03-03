@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:pages.github.com)",
+      "Bash(bundle update:*)",
+      "Bash(bundle list:*)",
+      "Bash(bundle show:*)",
+      "Bash(bundle exec:*)",
+      "Bash(ruby:*)",
+      "Bash(gem list:*)",
+      "Bash(gem search:*)"
+    ]
+  }
+}
