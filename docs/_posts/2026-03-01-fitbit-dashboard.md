@@ -46,6 +46,10 @@ which came in the form of a large zip file. The data turned out to be a mix of r
 the choice to import the data into a database and make a web application, exposing the data via GraphQL, to support 
 querying the data as well as support a web UI with graphs, as a replacement for the old Fitbit dashboard.
 
+![Dashboard](/images/2026-03-01/dashboard.png)
+
+![Heart Rate Detail](/images/2026-03-01/heart-rate-detail.png)
+
 ### Vibe coding
 
 I started my professional career working at an AS/400 shop. 
@@ -145,6 +149,8 @@ You can either:
 - **Upload it directly** via the dashboard (Import Data) or the REST API. Click on the avatar in the top right
 - **Extract it** to a `data` directory for CLI import. See the project's README for the steps involved. 
 
+![Import Data](/images/2026-03-01/import-dialog.png)
+
 ### Create an Account
 
 Open the dashboard and click "Create one" on the login page to register a new account. After registering, you'll be 
@@ -194,7 +200,7 @@ Dependencies:
 
 ## References
 
-[^project]: [Link to the project on GitHub](https://github.com/RikEnde/fitbit-kotlin)
+[^project]: [Link to the project on GitHub](https://github.com/RikEnde/fitbit-kotlin) (repository will be made public once the project passes QA)
 [^VibeCoding]: [The vibe coding tweet](https://x.com/karpathy/status/1886192184808149383?lang=en)
 [^karpathy]: [Karpathy: Software 2.0](https://karpathy.medium.com/software-2-0-a64152b37c35)
 [^sorry]: [Gradient descent can write code better than you. I'm sorry.](https://x.com/karpathy/status/893576281375219712?lang=en)
