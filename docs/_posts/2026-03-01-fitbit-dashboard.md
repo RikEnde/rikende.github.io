@@ -55,7 +55,7 @@ that company ever went out of business, they would have a hard time finding othe
 back of my mind. 
 
 In early 2025, Andrej Karpathy made quite a stir when he introduced the term 
-[Vibe Coding][^VibeCoding] to the world. 
+Vibe Coding[^VibeCoding] to the world. 
 
 > There's a new kind of coding I call "vibe coding", where you fully give in to the vibes, embrace exponentials, and 
 > forget that the code even exists.
@@ -71,32 +71,32 @@ This is not a skill I'm ever likely to use again, nor is anyone ever likely to p
 have always known the same would one day be true for Java, though until recently I would not have predicted it would be 
 replaced by prompting an AI. 
 
-Who could have predicted it? Well, Andrej Karpathy did, in his 2017 essay on Software 2.0[^karpathy] 
-He summarized[^sorry] his point as follows: 
+Who could have predicted it? Well, Andrej Karpathy did, in his 2017 essay on Software 2.0.[^karpathy] 
+He summarized[^sorry] the main point of his article as follows: 
 
 > Gradient descent can write better code than you. I'm sorry. 
 
 In this essay, he predicted that future software would be trained rather than programmed. 
 Reinterpreted with a couple of years of hindsight, that summary is more accurate now than he might have suspected 
-at the time. 
+at the time.
+
+### Use of Agents 
+
+I started the project with Jetbrains Junie and finished it with Claude Code. At work, I use Copilot CLI. In my 
+experience they're roughly equivalent, which indicates that the magic is mostly in the underlying model, which was 
+the same in all three (Anthropic). I'll build the next project with Codex to have a good comparison. As much as I like 
+working with Jetbrains products, a deep integration with the IDE doesn't add a great deal of value when the role of the 
+IDE has become more for viewing code than changing or managing it. 
 
 It took some planning and correcting to make the AI stick to the architecture and not always take the easiest path to
 implement a feature. We have to keep in mind that a significant part of architecture is to keep the code readable and
 maintainable by humans. I can imagine that future architectures which are designed never to be touched by humans, may
 favor very different choices, but as of late 2025 we are not there yet.
 
-### Use of Agents 
-
-I started the project with Jetbrains Junie and finished it with Claude Code. At work, I use Copilot CLI. In my 
-experience they're all about equivalent, which indicates that the magic is mostly in the underlying model, which was 
-the same in all three (Anthropic). I'll build the next project with Codex to have a good comparison. As much as I like 
-working with Jetbrains products, a deep integration with the IDE doesn't add a great deal of value when the role of the 
-IDE has become more for viewing code than changing or managing it. 
-
 I started out with a `CLAUDE.md` file that outlined the architecture I wanted the project to have and stick to. During 
 development, it's good to constantly update this file. Once data such as naming conventions, module, and directory 
 structure can easily be inferred from the existing code base, keeping these in the context files adds a significant 
-overhead in extra token use, without improving the performance[^gloaguen]
+overhead in extra token use, without improving the performance[^gloaguen].
 
 Before developing a feature, it helps to first lay down a development plan in the form of a Markdown document. I've 
 left this document in the GitHub repository for documentation purposes. This `plan.md` was created in conversation with 
@@ -108,8 +108,9 @@ screenshots, and largely inferred the desired user interface from that. Where it
 understanding the relevance of the data. The agent added some uninteresting statistics such as a daily average heart 
 rate, for example. Not having a human body, to the agent it's just data. 
 
-It gave me options with pros and cons for the tech stack to choose from, and given the fact that this was a greenfield 
-project, that hiring and re-training team members was not an issue, the chosen tech stack came out on top. 
+It gave me options with pros and cons for the tech stack to choose from. Given the fact that this was a greenfield 
+project, that hiring and re-training team members was not an issue, the tech stack we ended up choosing came out 
+clearly on top. 
 
 
 ## Disclaimer
