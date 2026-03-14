@@ -5,7 +5,7 @@ date:   2026-03-01 12:00:00 -0500
 tags: [fitbit,kotlin,claude-code,vibe-coding]
 ---
 
-Like most software professionals, I've always maintained a set of pet projects that were not primarily meant to 
+Like many software professionals, I've always maintained a set of pet projects that were not primarily meant to 
 solve a problem, but to explore and learn new technologies and programming languages.
 My pet projects were usually based on collecting, displaying, and managing server stats from my Linux PC, for no other 
 reason than that it was an available and consistent source of real-world data.  
@@ -14,9 +14,9 @@ About a decade and a half ago, I switched from using a Linux PC as my everyday d
 One consequence of this choice was that I would have to get a new source of data for my pet projects. 
 
 The first thing I tried was open source weather data. When the weather API I was using was shut down, I figured 
-biometrics might make a fun and more dependable source of data, so I bought a Fitbit. Exercise made the graphs more 
-interesting, so I got more and more into endurance exercise. It turned out running through the forest for hours on end 
-was a lot of fun. I never actually ended up writing the Fitbit app. 
+biometrics might make a relatable and more dependable source of data, so I bought a Fitbit. Exercise made the graphs 
+more interesting, so I got more and more into endurance exercise. Running through forest trails for hours on end became 
+a major occupation of my spare time. I never actually ended up writing the Fitbit app. 
 
 In 2021, Fitbit was acquired by Google. They shut down the Fitbit web dashboard, so I got worried it would be just a 
 matter of time before they would take the API offline as well. In addition to that, I was never completely sure Google 
@@ -80,11 +80,11 @@ at the time.
 
 ### Use of Agents 
 
-I started the project with Jetbrains Junie and finished it with Claude Code. At work, I use Copilot CLI. In my 
-experience they're roughly equivalent, which indicates that the magic is mostly in the underlying model, which was 
-the same in all three (Anthropic). I'll build the next project with Codex to have a good comparison. As much as I like 
-working with Jetbrains products, a deep integration with the IDE doesn't add a great deal of value when the role of the 
-IDE has become more for viewing code than changing or managing it. 
+I started the project with Jetbrains Junie and finished it with Claude Code. At work, I use Copilot CLI 
+(with Anthropic models). In my experience they're roughly equivalent, which indicates that the magic is mostly in the 
+underlying model, which was Anthropic in all three. I'll build the next project with Codex to have a good 
+comparison. As much as I like working with Jetbrains products, a deep integration with the IDE doesn't add a great deal 
+of value when the role of the IDE has become more for viewing code than changing or managing it. 
 
 It took some planning and correcting to make the AI stick to the architecture and not always take the easiest path to
 implement a feature. The AI has different constraints than a human coder, and doesn't need the same level of 
@@ -114,6 +114,15 @@ learning much about Svelte at all. I approved all these choices. If it turns out
 to hide behind the model that generated it. Do see the disclaimer in the project README, the gist of it is: don't put 
 your personal data on the internet. 
 
+### Failure modes
+
+Based on the prevailing mood in blog posts about agentic coding, I was expecting certain LLM specific failure modes,
+such as hallucinated APIs, broken builds, security issues, and deviations from the architecture. During the spring break
+of 2025 I experienced these issues to some degree, but by the Christmas break, the models seemed to have crossed a 
+certain threshold. When the model made a mistake, the agent would analyze the error and fix it. It was able to stay on 
+task for long times. Security issues were better than I see in pull requests from human coders. It built the security 
+I asked for, and gave me solid recommendations based on tradeoffs that made sense for the tiny scale of the project. 
+
 ### Lessons learned
 
 An engineer's job largely consists of solving three questions: *what* to make, *why* to make it, and *how* to make it. 
@@ -122,7 +131,7 @@ micromanaging by the human operator. It's perfectly capable of implementing a de
 asked to do so*, and it is capable of weighing pros and cons of technical choices. This used to be the entire *how* 
 part of the job, so our work has changed significantly and permanently, there is no way around it. The *what* and *why* 
 parts are different, because the choices made there depend on priorities. The agent doesn't need a Fitbit dashboard. 
-The agent has no reason to understand why the total number of steps per day is interesting, but the total number of 
+The agent has no reason to care why the total number of steps per day is interesting, but the average number of 
 heartbeats per day is not. 
 
 Maybe next year the *what* and *why* steps will be automated too, but as of early 2026, Claude Code is not the tool for 
