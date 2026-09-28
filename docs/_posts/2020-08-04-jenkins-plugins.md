@@ -79,7 +79,7 @@ may break if they make a big change.
 ### Getting started
 
 
-The easiest way to get started is to use the maven archtype defined for jenkins plugins:
+The easiest way to get started is to use the maven archetype defined for jenkins plugins:
 
 `mvn archetype:generate -Dfilter=io.jenkins.archetypes:plugin`
 
@@ -240,7 +240,7 @@ this directory. It will be re-created on the next `hpi:run`.
 ![Run configuration](/images/2020-08-05/jenkins_work_directory.png){:height="200px"}
 
 
-The snippet generator can generate an example of pipeline syntax for thisplugin. For every constructor argument it will 
+The snippet generator can generate an example of pipeline syntax for this plugin. For every constructor argument it will 
 attempt to call a `getFieldName()` in the extension point, and use the value returned in the example:
 
 Generated snippet:

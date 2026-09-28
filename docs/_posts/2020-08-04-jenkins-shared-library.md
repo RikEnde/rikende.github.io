@@ -51,7 +51,7 @@ def call(List list) {
 In the step defined above, only the `echo $result part` is executed on the agent, the computation runs on the master. 
 Don't put computationally intensive operations in your pipeline library, and don't use blocking I/O calls, or you may 
 end up blocking the master. Cloudbees recommends using shell steps for all your resource intensive work. Cloudbees 
-pecifically warns not to do things like XML or JSON parsing in the groovy code.
+specifically warns not to do things like XML or JSON parsing in the groovy code.
 
 #### Groovy but not really
  

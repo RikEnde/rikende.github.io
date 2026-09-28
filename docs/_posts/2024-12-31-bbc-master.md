@@ -330,7 +330,7 @@ The next instruction `CMP #value` becomes `C9`, followed by `0D` as the value. T
 subtraction took place, but only set the Negative, Zero and Carry flags, not store the result. 
 
 The next instruction `BEQ`, opcode `F0`, does a conditional jump if the zero flag was set by the preceding `CMP` 
-if A was equal to 13. The next bye, `06` is the relative address to jump to if the condition is met, in this case 
+if A was equal to 13. The next byte, `06` is the relative address to jump to if the condition is met, in this case 
 6 bytes forward. 
 
 The `JSR` opcode is `20`. This instruction, jump to subroutine, stores the current program counter on the stack before 
