@@ -8,3 +8,5 @@
 .idea/!/docs/
 .DS_Store
 .claude/
+/CLAUDE.md
+/.ruby-version
