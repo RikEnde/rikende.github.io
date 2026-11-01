@@ -11,7 +11,7 @@ Azure functions are Microsoft's equivalent of Lambda's in AWS: a so called `serv
 `function` is defined as: `an event plus the code that is being triggered by the event`.
 
 Functions reside in a so called `Function App`, which is the unit of deployment for functions. One function app can 
-contain multiple functions. Function apps run on top of A zure App Service, which is the platform as a service (PaaS) 
+contain multiple functions. Function apps run on top of Azure App Service, which is the platform as a service (PaaS) 
 solution in Azure. This started with native support for functions written in .NET and PowerShell, but also support 
 Node, Python, Java and 'Custom', which should include native binaries or docker, but these were outside the scope of 
 this document.
@@ -106,8 +106,8 @@ az group create --location "$location" --resource-group "$resourceGroup"
 
 A storage account can be created like this:
 ```bash
-az storage account create -n "$storageAccount" \ 
-    -l "$location" -g "$resourceGroup" \ 
+az storage account create -n "$storageAccount" \
+    -l "$location" -g "$resourceGroup" \
     --sku "Standard_LRS"
 ```
 
@@ -118,9 +118,9 @@ must be of account kind: `Account kind StorageV2 (general purpose v2)` in order 
 
 We can create storage containers with the following command:
 ```bash
-az storage container create -n myblob \ 
-    --account-name $"storageAccount" \ 
-    --resource-group "$resourceGroup"\ 
+az storage container create -n myblob \
+    --account-name "$storageAccount" \
+    --resource-group "$resourceGroup" \
     --fail-on-exist
 ```
 
@@ -135,8 +135,8 @@ azure for the actual functions that we will deploy later.
 az functionapp create \
     -n "$applicationName" \
     -g "$resourceGroup" \
-    --storage-account "$storageAccount" \ 
-    --consumption-plan-location "$location" \ 
+    --storage-account "$storageAccount" \
+    --consumption-plan-location "$location" \
     --runtime "java"
 ```
 
@@ -146,8 +146,8 @@ az functionapp create \
 An application insights is a resource that can be used for monitoring, logging, testing etc of an application in Azure.
 
 ```bash
-az monitor app-insights component create --app "$applicationName" \ 
-    --location "$location" --kind web -g "$resourceGroup" \ 
+az monitor app-insights component create --app "$applicationName" \
+    --location "$location" --kind web -g "$resourceGroup" \
     --application-type web
 ```
 
@@ -180,8 +180,8 @@ choices of different types of functions by the type of trigger.
 For a java function you can create the project using a maven archetype:
 
 ```bash
-mvn archetype:generate \ 
-    -DarchetypeGroupId=com.microsoft.azure \ 
+mvn archetype:generate \
+    -DarchetypeGroupId=com.microsoft.azure \
     -DarchetypeArtifactId=azure-functions-archetype
 ```
 
@@ -208,7 +208,7 @@ zip -r azure-function-20210628 .
 This creates the deployable zipfile that can be deployed with this command:
 
 ```bash
-az functionapp deploy --resource-group feiseu2-supply-rg-001 \ 
+az functionapp deploy --resource-group "$resourceGroup" \
     --name azure-function-20210628 \
     --src-path ./azure-function-20210628.zip \
     --type jar --async true \
@@ -293,7 +293,7 @@ One of the method parameters is annotated as a `@BlobTrigger`. The event that wi
 to the blob store we reference here, that matches the path `blobby/{name}`. The `{name}` path parameter is bound to the 
 filename parameter with the `@BindingName` annotation. The execution context enables limited interaction with the 
 function's execution environment, for example for logging. If you have an application insights defined for this 
-function app, you have more fine grained interactions with the execution environment available via te UI, where you 
+function app, you have more fine grained interactions with the execution environment available via the UI, where you 
 can even open a command line in the container the function is running in.
 
 ```java
